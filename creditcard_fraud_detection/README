@@ -1,1 +1,136 @@
 
+# 💳 Credit Card Fraud Detection (End-to-End ML Pipeline)
+
+## 📌 Overview
+
+This project builds an end-to-end machine learning pipeline to detect fraudulent credit card transactions using a highly imbalanced dataset.
+
+The goal is to simulate a **real-world fraud detection system**, covering:
+
+* Data preprocessing
+* Model training and evaluation
+* Model persistence
+* Inference pipeline (deployment-style predictions)
+
+---
+
+## 🚀 Project Structure
+
+```
+📁 fraud-detection/
+│
+├── 01-card-fraud-dection-data-preparation.ipynb
+├── 02-card-fraud-dection-model-training.ipynb
+├── 03-card-fraud-dection-prediction.ipynb
+│
+├── artifacts/
+│   ├── fraud_nn_model.keras
+│   ├── scaler.pkl
+│   ├── feature_names.pkl
+│
+└── README.md
+```
+
+---
+
+## 📊 Dataset
+
+* Source: ULB Machine Learning Group
+* https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+* Contains anonymized credit card transactions
+* Highly imbalanced:
+
+  * ~99.8% normal transactions
+  * ~0.2% fraud cases
+
+---
+
+## ⚙️ Workflow
+
+### 1️⃣ Data Preparation
+
+* Load dataset
+* Handle missing values
+* Feature selection
+* Train/test split
+* Save datasets as `.npy` for reuse
+
+---
+
+### 2️⃣ Model Training
+
+* Models explored:
+
+  * Linear Regression
+  * Random Forest
+  * Neural Network (Keras)
+
+* Techniques used:
+
+  * Standardization (Scaler)
+  * Threshold tuning (critical for fraud detection)
+  * Evaluation using:
+
+    * Confusion Matrix
+    * Precision / Recall / F1-score
+
+* Key challenge:
+
+  * **Imbalanced data → focus on recall vs precision tradeoff**
+
+---
+
+### 3️⃣ Inference Pipeline
+
+Simulates real-world deployment:
+
+* Load saved artifacts:
+
+  * trained model
+  * scaler
+  * feature list
+* Accept new transaction data
+* Apply preprocessing
+* Generate fraud probability
+* Apply decision threshold
+
+---
+
+## 🧠 Key Learnings
+
+* In fraud detection:
+
+  * **Recall is often more important than accuracy**
+  * Missing fraud = financial loss
+
+* Threshold tuning is critical:
+
+  * Default 0.5 is not optimal for imbalanced datasets
+
+* Separation of training and inference is essential for:
+
+  * reproducibility
+  * production readiness
+
+---
+
+## 📈 Example Results
+
+| Metric    | Value                        |
+| --------- | ---------------------------- |
+| Accuracy  | ~99%                         |
+| Precision | High                         |
+| Recall    | Tuned (trade-off controlled) |
+
+> Note: Performance depends heavily on threshold selection.
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy / Pandas
+* Scikit-learn
+* TensorFlow / Keras
+* Kaggle Notebooks
+
